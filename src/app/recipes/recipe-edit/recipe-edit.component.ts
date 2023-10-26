@@ -4,7 +4,6 @@ import { FormGroup } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { RecipeService } from '../recipe.service';
 
-
 @Component({
   selector: 'app-recipe-edit',
   templateUrl: './recipe-edit.component.html',
@@ -24,26 +23,29 @@ export class RecipeEditComponent implements OnInit {
       (params: Params) => {
         this.id = +params['id'];
         this.editMode = params['id'] != null;
-        this.privateinitForm();
+        this.initForm();
       }
     );
   }
+  onSubmit() {
+    console.log(this.recipeForm);
+  }
 
-  privateinitForm() {
+  private initForm() {
     let recipeName = '';
     let recipeImagePath = '';
     let recipeDescription = '';
 
-    if(this.editMode) {
+    if (this.editMode) {
       const recipe = this.recipeService.getRecipe(this.id);
       recipeName = recipe.name;
       recipeImagePath = recipe.imagePath;
       recipeDescription = recipe.description;
     }
-    this.recipeForm= new FormGroup({
+    this.recipeForm = new FormGroup({
       'name': new FormControl(recipeName),
       'imagePath': new FormControl(recipeImagePath),
-
+      'description': new FormControl,
     });
   }
 }
