@@ -10,4 +10,8 @@ constructor(private dataStorageService: DataStorageService){}
   onSaveData() {
     this.dataStorageService.storeRecipes();
 }
+
+onFetchData() {
+  this.dataStorageService.fetchRecipes();
+}
 }
