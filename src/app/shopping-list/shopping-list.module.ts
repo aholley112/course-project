@@ -14,6 +14,6 @@ import { LoggingService } from '../logging.service';
     RouterModule.forChild([{ path: '', component: ShoppingListComponent }]),
     SharedModule
   ],
-  // providers: [LoggingService]
+  //providers: [LoggingService]
 })
 export class ShoppingListModule {}
