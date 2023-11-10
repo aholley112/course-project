@@ -22,12 +22,13 @@ export class AuthService {
   user = new BehaviorSubject<User>(null);
   private tokenExpirationTimer: any;
 
+  API_KEY = environment.firebaseAPIKey
   constructor(private http: HttpClient, private router: Router) {}
 
   signup(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=' + environment.firebaseAPIKey,
+        `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${this.API_KEY}`,
         {
           email: email,
           password: password,
@@ -50,7 +51,7 @@ export class AuthService {
   login(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=' + environment.firebaseAPIKey,
+        `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${this.API_KEY}`,
         {
           email: email,
           password: password,
